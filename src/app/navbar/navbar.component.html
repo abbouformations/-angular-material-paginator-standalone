@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <a href="#" class="navbar-brand">Formation Génie Logiciel</a>
+  <ul class="navbar-nav mr-auto" routerLinkActive="active">
+    <li class="nav-item" *ngIf="isAdmin || isClient">
+      <a
+        class="nav-link"
+        [routerLink]="[
+          '/',
+          { outlets: { primary: ['navbar'], contenu: ['employees'] } }
+        ]"
+        >Gestion des employés</a
+      >
+    </li>
+    <li class="nav-item" *ngIf="isAdmin">
+      <a class="nav-link" *ngIf="isLoggedIn" routerLink="user"
+        >Gestion des utilisateurs</a
+      >
+    </li>
+  </ul>
+  <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="profile">{{ username }}</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" (click)="logout()">LogOut</a>
+    </li>
+  </ul>
+</nav>
